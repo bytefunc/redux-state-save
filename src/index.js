@@ -11,7 +11,7 @@ import {
 export default class Storage {
     constructor() {
         this.defaultConfig = {
-            storage_type: 'local_storage', // "local_storage", "file_storage"
+            storage_type: 'file_storage', // "local_storage", "file_storage"
             filter_type: 'blacklist', // "whitelist", "blacklist"
             filter_list: [],
             file_path: '',
