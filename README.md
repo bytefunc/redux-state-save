@@ -12,8 +12,33 @@ npm install --save redux-state-save
 
 # Usage
 
-## Example 1  (Use the local storage)
-Example of the most simple method of use. Save all of the redux state that have registered to reducers to local storage.
+## Example 1 (Use the file storage)
+Example of the most simple method of use. Save all of the redux state that have registered to reducers to file storage.
+
+```
+import Storage from 'redux-state-save'
+
+var storage1 = new Storage();
+storage1.setConfig({
+    storage_type: 'file_storage',
+    file_path: 'c:\test',
+    file_name: 'user.json',
+});
+var store = createStore(
+    reducers,
+    applyMiddleware(
+        storage1.saveState()
+    )
+);
+
+// state data load from file storage
+store = storage1.loadState(store);
+```
+
+## Example 2 (Use the local storage)
+local storage is window.localstorage of Web API.
+
+if you want to use local storage. you should change storage_type value of config option to local_storage.
 
 
 ```
@@ -34,31 +59,6 @@ var store = createStore(
 // state data load from local storage
 store = storage1.loadState(store);
 ```
-
-## Example 2 (Use the file storage)
-If you use file storage. have to set "storage_type" and "path" for config option.
-
-```
-import Storage from 'redux-state-save'
-
-var storage1 = new Storage();
-storage1.setConfig({
-    storage_type: 'file_storage',
-    file_path: 'c:\test',
-    file_name: 'user.json',
-});
-var store = createStore(
-    reducers,
-    applyMiddleware(
-        storage1.saveState()
-    )
-);
-
-// state data load from local storage
-store = storage1.loadState(store);
-```
-
-
 
 ## Example 3  (Use multi storage)
 State saved using both of local storage and file storage in the below example.
@@ -110,7 +110,7 @@ store = storage2.loadState(store);
 ### .setConfig({options})
 |   options  |    type    |      default       |   description   |
 |:-----------|-----------:|:------------------:|:---------------:|
-|storage_type|   string   |      "local_storage"       |   "local_storage" or "file_storage"   |
+|storage_type|   string   |      "file_storage"       |   "file_storage" or "local_storage"   |
 | filter_type|   string   |    "blacklist"     |   "whitelist" or "blacklist"   |
 | filter_list|   array    |        []          |   set the state name to filter   |
 | file_path  |   string   |        ""          |   If you use file storage. have to set path value   |
