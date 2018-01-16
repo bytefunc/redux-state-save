@@ -3,6 +3,10 @@
     "version": "0.1.3",
     "description": "Save and load the redux state",
     "author": "bytefunc",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/bytefunc/redux-state-save.git"
+    },
     "license": "WTFPL",
     "main": "lib/index.js",
     "keywords": [
