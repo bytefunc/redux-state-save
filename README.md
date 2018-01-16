@@ -14,7 +14,7 @@ yarn add redux-state-save
 
 # Usage
 
-## Example 1 (Use the file storage)
+## Example 1 (using the file storage)
 
 Example of the most simple method of use. Save all of the redux state that have registered to reducers to file storage.
 
@@ -33,7 +33,7 @@ var store = createStore(reducers, applyMiddleware(storage1.saveState()));
 store = storage1.loadState(store);
 ```
 
-## Example 2 (Use the local storage)
+## Example 2 (using the the local storage)
 
 local storage is window.localstorage of Web API.
 
@@ -53,7 +53,7 @@ var store = createStore(reducers, applyMiddleware(storage1.saveState()));
 store = storage1.loadState(store);
 ```
 
-## Example 3 (Use multi storage)
+## Example 3 (using multi storage)
 
 State saved using both of local storage and file storage in the below example.
 
