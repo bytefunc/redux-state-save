@@ -1,10 +1,10 @@
-import path from 'path'
-import fs from 'fs'
+import path from "path";
+import fs from "fs";
 
 import {
     serializeJsonFunctions,
-    deserializeJsonFunctions,
-} from './serializeJson.js';
+    deserializeJsonFunctions
+} from "./serializeJson.js";
 
 /**
  * @param {string} file_path
@@ -17,7 +17,10 @@ export function loadFileStorage(file_path, file_name) {
     if (!fs.existsSync(FilePath)) {
         return {};
     }
-    return JSON.parse(fs.readFileSync(FilePath, 'utf-8'), deserializeJsonFunctions);
+    return JSON.parse(
+        fs.readFileSync(FilePath, "utf-8"),
+        deserializeJsonFunctions
+    );
 }
 
 /**

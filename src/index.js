@@ -1,29 +1,23 @@
-import {
-    loadLocalStorage,
-    saveLocalStorage,
-} from './localStorage.js';
+import { loadLocalStorage, saveLocalStorage } from "./localStorage.js";
 
-import {
-    loadFileStorage,
-    saveFileStorage,
-} from './fileStorage.js';
+import { loadFileStorage, saveFileStorage } from "./fileStorage.js";
 
 export default class Storage {
     constructor() {
         this.defaultConfig = {
-            storage_type: 'file_storage', // "local_storage", "file_storage"
-            filter_type: 'blacklist', // "whitelist", "blacklist"
+            storage_type: "file_storage", // "local_storage", "file_storage"
+            filter_type: "blacklist", // "whitelist", "blacklist"
             filter_list: [],
-            file_path: '',
-            file_name: 'redux-states.json',
-            local_key: 'redux-states',
+            file_path: "",
+            file_name: "redux-states.json",
+            local_key: "redux-states"
         };
         this.config = {};
     }
 
     loadState(store) {
         const config = this.getConfig();
-        const data   = this._getDate(config);
+        const data = this._getDate(config);
         for (const state_key in data) {
             if (!this._isFiltering(config, state_key)) {
                 store.getState()[state_key] = data[state_key];
@@ -31,14 +25,14 @@ export default class Storage {
         }
         return store;
     }
-  
+
     saveState() {
         return ({ getState }) => {
-            return (next) => (action) => {
+            return next => action => {
                 next(action);
 
                 const config = this.getConfig();
-                const state  = getState();
+                const state = getState();
                 let d = {};
                 for (const state_key in state) {
                     if (!this._isFiltering(config, state_key)) {
@@ -46,8 +40,8 @@ export default class Storage {
                     }
                 }
                 this._setDate(config, d);
-            }
-        }
+            };
+        };
     }
 
     /**
@@ -70,7 +64,7 @@ export default class Storage {
      */
     _setDate(config, data) {
         const storage_type = config.storage_type;
-        if (storage_type === 'local_storage') {
+        if (storage_type === "local_storage") {
             const local_key = config.local_key;
             saveLocalStorage(local_key, data);
         } else {
@@ -87,7 +81,7 @@ export default class Storage {
     _getDate(config) {
         const storage_type = config.storage_type;
         let data;
-        if (storage_type === 'local_storage') {
+        if (storage_type === "local_storage") {
             const local_key = config.local_key;
             data = loadLocalStorage(local_key);
         } else {
@@ -106,7 +100,7 @@ export default class Storage {
     _isFiltering(config, state_key) {
         const filter_type = config.filter_type;
         const filter_list = config.filter_list;
-        if (filter_type === 'blacklist') {
+        if (filter_type === "blacklist") {
             for (var i = 0; i < filter_list.length; i++) {
                 if (filter_list[i] === state_key) {
                     return true;

@@ -1,7 +1,7 @@
 import {
     serializeJsonFunctions,
-    deserializeJsonFunctions,
-} from './serializeJson.js';
+    deserializeJsonFunctions
+} from "./serializeJson.js";
 
 /**
  * @param {string} local_key
@@ -14,11 +14,13 @@ export function loadLocalStorage(local_key) {
     return JSON.parse(window.localStorage[local_key], deserializeJsonFunctions);
 }
 
-
 /**
  * @param {string} local_key
  * @param {object} data
  */
 export function saveLocalStorage(local_key, data) {
-    window.localStorage[local_key] = JSON.stringify(data, serializeJsonFunctions);
+    window.localStorage[local_key] = JSON.stringify(
+        data,
+        serializeJsonFunctions
+    );
 }

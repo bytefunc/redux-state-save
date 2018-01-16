@@ -2,7 +2,9 @@
  * JSON.stringify Serialize functions
  */
 export function serializeJsonFunctions(k, f) {
-    if (typeof f === "function") { return f.toString() };
+    if (typeof f === "function") {
+        return f.toString();
+    }
     return f;
 }
 
