@@ -6,6 +6,10 @@ Save and load the redux state.
 
 ```javascript
 npm install --save redux-state-save
+
+or
+
+yarn add redux-state-save
 ```
 
 # Usage
