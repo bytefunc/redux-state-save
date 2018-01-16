@@ -12,7 +12,6 @@
         "middleware",
         "localstorage"
     ],
-    "files": ["lib/", "src/", "package.json", "README.md"],
     "scripts": {
         "build": "babel src --source-maps=false --out-dir lib",
         "watch": "babel src --out-dir lib --watch "
