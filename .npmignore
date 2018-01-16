@@ -1,2 +1,5 @@
 .gitignore
 .prettierrc
+src
+yarn.lock
+node_modules
